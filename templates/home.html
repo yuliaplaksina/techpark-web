@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AskPlaksina{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        {% if fil != "best" %}
+            <h2 class="page-header">Новые вопросы</h2>
+            <a href="{% url 'best' %}"><button type="button" class="btn btn-link">Популярные вопросы</button></a>
+        {% else %}
+            <h2 class="page-header">Популярные вопросы</h2>
+            <a href="{% url 'main' %}"><button type="button" class="btn btn-link">Новые вопросы</button></a>
+        {% endif %}
+    </div>
+
+        {% for question in questions %}
+            {% include 'include/post.html' %}
+        {% endfor %}
+
+    {% include 'include/pagination.html' with elements=questions %}
+{% endblock %}

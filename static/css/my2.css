@@ -1,0 +1,82 @@
+.navbar-header {
+}
+
+.navbar-brand {
+    margin: auto 50px;
+}
+.search {
+    width: 500px;
+}
+
+.btn-login {
+    /*margin-left: 100px;*/
+    position: absolute;
+    right: 20px;
+}
+
+.btn-green {
+    color: #28a745;
+}
+
+.btn-green:hover {
+  color: #163b20;
+  text-decoration: underline;
+}
+
+.btn-mrg {
+    margin: auto 20px;
+}
+
+.main-body {
+    margin-top: 30px;
+}
+
+.tag-cloud {
+    margin-top: 50px;
+    height: 200px;
+    border-color: #28a745;
+    border: 2px;
+}
+
+.btn-members {
+    display: block;
+
+}
+
+.navbar-footer {
+    height: 50px;
+}
+
+div.page-header {
+    margin-bottom: 30px;
+    height: auto;
+}
+
+h2.page-header {
+    display: inline;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+}
+
+.qst {
+    margin-bottom: 30px;
+    display: block;
+    border: 2px solid #28a745;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    z-index: 0;
+}
+
+.qst:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.qst:hover p {
+    color: black;
+}

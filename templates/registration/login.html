@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AskPlaksina{% endblock %}
+
+{% block body %}
+    <div class="page-header text-center">
+        <h2 class="page-header header-login">Войдите в свой аккаунт</h2>
+    </div>
+
+    {% if form.errors %}
+        <p class="text-center">Пара логин-пароль не совпадает. Пожалуйста, попробуйте еще раз</p>
+    {% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p class="text-center">Ваш аккаунт не имеет доступа. Пожалуйста, смените аакаунт, чтобы продолжить.</p>
+        {% else %}
+            <p class="text-center">Пожалуйста, войдите, чтобы продолжить.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+        <table class="login_form" align="center">
+            <tr>
+                <td width="200" height="50">{{ form.username.label_tag }}</td>
+                <td height="50">{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td width="200" height="50">{{ form.password.label_tag }}</td>
+                <td height="50">{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <div class="text-center">
+            {#      <input type="button" class="btn btn-light" value="Забыли пароль?" />#}
+            <input type="submit" class="btn btn-outline-success btn-login-body" value="Войти!" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </form>
+
+    <form action="{% url 'register' %}">
+        <div class="text-center mt-3">
+            <input type="submit" class="btn btn-outline-success btn-login-body" value="Нет профиля?" />
+        </div>
+    </form>
+
+{% endblock %}

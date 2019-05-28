@@ -1,0 +1,41 @@
+
+.qst-con {
+    margin-bottom: 35px;
+}
+
+.qst-con .col-2 {
+    text-align: center;
+}
+
+.img-qst {
+    width: 100%;
+    height: auto;
+}
+
+.img-answ {
+    padding: 0px;
+}
+
+.img-answ > img{
+    width: 100%;
+    height: auto;
+}
+
+.qst-title {
+    margin-bottom: 40px;
+}
+
+.qst-text {
+    position: relative;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1em;
+    line-height: 1.4em;
+    height: 4.2em;
+    overflow: hidden;
+
+}
+
+.answer {
+    margin: 50px;
+}

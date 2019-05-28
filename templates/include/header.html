@@ -1,0 +1,38 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-header sticky-top">
+    <a class="navbar-brand pull-left" href="/">AskPlaksina</a>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ask!</button>
+    </form>
+
+
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav mr-auto btn-login">
+        <li class="nav-item">
+            <img src="{% static 'img/../../media/img/test.jpg' %}" width="45" height="45" alt="Image of account">
+        </li>
+        <li class="nav-item">
+            <a href=""><button type="button" class="btn btn-green btn-link">{{ user.username }}</button></a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'logout' %}"><button type="button" class="btn btn-success">Выйти</button></a>
+        </li>
+      </ul>
+    {% else %}
+        <ul class="navbar-nav mr-auto btn-login">
+          <li class="nav-item">
+              <a href="{% url 'login' %}"><button type="button" class="btn btn-light btn-mrg">Вход</button></a>
+          </li>
+          <li class="nav-item">
+              <a href="{% url 'register' %}"><button type="button" class="btn btn-success">Регистрация</button></a>
+          </li>
+        </ul>
+  {% endif %}
+  </div>
+</nav>

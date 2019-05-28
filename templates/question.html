@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AskPlaksina{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h3>{{ question.title }}</h3>
+    </div>
+    <div class="container qst-con">
+        <div class="row">
+          <div class="col-2">
+            <img class="img-qst" src="media/{{ question.author_avatar }}" alt="Image of account">
+            {{ question.author_name }}
+        </div>
+          <div class="col">
+            <div class="qst-text">
+                {{ question.text }}
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+
+    </div>
+
+    {% if answers %}
+        <h4>Ответы:</h4>
+        {% for answer in answers %}
+            <div class="card answer">
+                <div class="card-body row">
+                    <div class="col-1 img-answ">
+                        <img src="{% static 'media/{{ answer.author_avatar }}' %}" alt="Image of account">
+                    </div>
+                    <div class="col">
+                            <h6>{{ answer.author }}</h6>
+                            <p class="card-text">{{ answer.text }}</p>
+
+                    </div>
+                </div>
+        </div>
+        {% endfor %}
+
+        {% include 'include/pagination.html' with elements=answers %}
+    {% else %}
+        <h4>Ответов пока нет! Оставьте первый</h4>
+    {% endif %}
+{% endblock %}

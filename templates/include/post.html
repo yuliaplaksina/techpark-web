@@ -1,0 +1,25 @@
+{% load static %}
+
+ <a href="{% url 'question' qid=question.id %}" class="qst">
+    <div class="card">
+        <div class="card-body row">
+            <div class="col-2">
+                <img class="img" src="media/{{ question.author_avatar }}" alt="Image of account">
+                <p class="text-center">{{ question.author_name }}</p>
+
+            </div>
+            <div class="col-10">
+                <div class="">
+                    <h5 class="card-title">{{ question.title }}</h5>
+                    <p>{{ question.data_added }}</p>
+                    <p class="qst-text">{{ question.text }}</p>
+                    {% if question.answer_count %}
+                        <p>{{ question.answer_count }} ответов</p>
+                    {% else %}
+                        <p>Ответов пока нет</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

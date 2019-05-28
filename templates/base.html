@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{#        <link rel="stylesheet" href="{% static 'css/my.css' %}">#}
+        <link rel="stylesheet" href="{% static 'css/my2.css' %}">
+        <link rel="stylesheet" href="{% static 'css/question.css' %}">
+    </head>
+
+    <body>
+
+        {% include 'include/header.html' %}
+
+        <div class="container main-body h-100">
+          <div class="row">
+            <div class="col-9">
+              {% block body %}Переопределяется в наслениках{% endblock %}
+            </div>
+            <div class="col">
+                {% if user.is_authenticated and request.path != '/add_question/' %}
+                    <a href="{% url 'add_question' %}"><button type="button" class="btn btn-success">Задать вопрос</button></a>
+                {% endif %}
+                <div class="tag-cloud">
+                    <h3>Популярные теги</h3>
+                </div>
+                <div class="">
+                    <h3>Лучшие участники</h3>
+                    <div class="ml-3">
+                        <p>Member1</p>
+                        <p>Member2</p>
+                        <p>Member3</p>
+                        <p>Member4</p>
+                        <p>Member5</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Подключаем Bootstrap JS -->
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    </body>
+</html>
