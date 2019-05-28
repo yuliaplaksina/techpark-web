@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+__pycache__/
+db.sqlite3
+media/
+venv/
+env/
+config.ini
