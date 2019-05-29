@@ -15,7 +15,7 @@
     {% if user.is_authenticated %}
       <ul class="navbar-nav mr-auto btn-login">
         <li class="nav-item">
-            <img src="{% static 'img/../../media/img/test.jpg' %}" width="45" height="45" alt="Image of account">
+            <img src="/media/{{ user.profile.avatar }}" width="45" height="45" alt="Image of account">
         </li>
         <li class="nav-item">
             <a href=""><button type="button" class="btn btn-green btn-link">{{ user.username }}</button></a>
