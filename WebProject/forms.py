@@ -1,6 +1,6 @@
 from django import forms
 from django.db import transaction
-from WebProject.models import Profile, Question, Tag
+from WebProject.models import Profile, Question, Tag, Answer
 from django.contrib.auth.models import User
 
 
@@ -47,3 +47,21 @@ class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['title', 'text']
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['text']
+
+    def __init__(self, user, question, *args, **kwargs):
+        super(AnswerForm, self).__init__(*args, **kwargs)
+        self.author = user.profile
+        self.question = question
+
+    def save(self, commit=True):
+        instance = super(AnswerForm, self).save(commit=False)
+        instance.author = self.author
+        instance.question = self.question
+        if commit:
+            instance.save()

@@ -6,17 +6,19 @@ from django.db.models import F, Count
 class QuestionManager(models.Manager):
 
     def new(self):
-        return self.add_fields().order_by('-data_added')
+        return self.add_author().order_by('-data_added')
 
     def best(self):
-        return self.add_fields().order_by('-rating')
+        return self.add_author().order_by('-rating')
 
-    def add_fields(self):
+    def add_author(self):
         return self.annotate(
             author_name=F('author__user__username'),
-            answer_count=Count('answer'),
             author_avatar=F('author__avatar')
         )
+
+    def add_answer_count(self):
+        return self.annotate(answer_count=Count('answer'))
 
 
 class Question(models.Model):
@@ -37,6 +39,7 @@ class Question(models.Model):
     tags = models.ManyToManyField(
         'Tag'
     )
+    answer_cnt = models.IntegerField(default=0)
 
     objects = QuestionManager()
 

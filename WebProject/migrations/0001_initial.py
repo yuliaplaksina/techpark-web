@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.TextField(verbose_name='Текст')),
                 ('data_added', models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')),
-                ('is_right', models.BooleanField(default='false')),
+                ('is_right', models.BooleanField(default=False)),
                 ('rating', models.IntegerField(verbose_name='Рейтинг')),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='WebProject.Profile')),
             ],
