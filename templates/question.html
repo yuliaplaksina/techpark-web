@@ -9,16 +9,19 @@
     </div>
     <div class="container qst-con">
         <div class="row">
-          <div class="col-2">
-            <img class="img-qst" src="/media/{{ question.author_avatar }}" alt="Image of account">
-            {{ question.author_name }}
-        </div>
-          <div class="col">
-            <div class="qst-text">
-                {{ question.text }}
+            <div class="col-2">
+                <img class="img-qst" src="/media/{{ question.author_avatar }}" alt="Image of account">
+                {{ question.author_name }}
+            </div>
+            <div class="col">
+                <div class="qst-text">
+                    {{ question.text }}
+                </div>
+                <div class="text-right text-muted font-italic">
+                    {{ question.data_added }}
+                </div>
             </div>
         </div>
-      </div>
     </div>
 
     {% if user.is_authenticated %}
@@ -27,7 +30,7 @@
             {% csrf_token %}
 
             <div class="form-group">
-                {% render_field form.text class="form-control w-100 m-auto" rows="3"%}
+                {% render_field form.text class="form-control w-100 m-auto" rows="3" %}
             </div>
 
             <button type="submit" class="btn btn-outline-success mb-3">Ответить</button>
@@ -45,11 +48,14 @@
                         <img src="/media/{{ answer.author_avatar }}" alt="Image of account">
                     </div>
                     <div class="col">
-                            <h6>{{ answer.author }}</h6>
-                            <p class="card-text">{{ answer.text }}</p>
+                        <h6>{{ answer.author }}</h6>
+                        <p class="card-text">{{ answer.text }}</p>
+                        <div class="text-right text-muted font-italic">
+                            <small>{{ answer.data_added }}</small>
+                        </div>
                     </div>
                 </div>
-        </div>
+            </div>
         {% endfor %}
 
         {% include 'include/pagination.html' with elements=answers %}

@@ -40,6 +40,11 @@ class Question(models.Model):
         'Tag'
     )
     answer_cnt = models.IntegerField(default=0)
+    likes = models.ManyToManyField(
+        to='Profile',
+        through='QuestionLike',
+        related_name='liked_questions'
+    )
 
     objects = QuestionManager()
 
@@ -49,6 +54,17 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class QuestionLike(models.Model):
+    question = models.ForeignKey(
+        to=Question,
+        on_delete=models.CASCADE
+    )
+    profile = models.ForeignKey(
+        to='Profile',
+        on_delete=models.CASCADE
+    )
 
 
 class Tag(models.Model):
@@ -117,7 +133,11 @@ class Answer(models.Model):
     )
     is_right = models.BooleanField(default=False)
     rating = models.IntegerField(verbose_name="Рейтинг", default=0)
-
+    likes = models.ManyToManyField(
+        to=Profile,
+        through='AnswerLike',
+        related_name='liked_answers'
+    )
     objects = AnswerManager()
 
     class Meta:
@@ -126,3 +146,14 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class AnswerLike(models.Model):
+    answer = models.ForeignKey(
+        to=Answer,
+        on_delete=models.CASCADE
+    )
+    profile = models.ForeignKey(
+        to=Profile,
+        on_delete=models.CASCADE
+    )

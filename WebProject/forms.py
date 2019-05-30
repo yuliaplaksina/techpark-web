@@ -63,5 +63,6 @@ class AnswerForm(forms.ModelForm):
         instance = super(AnswerForm, self).save(commit=False)
         instance.author = self.author
         instance.question = self.question
+        instance.question.answer_cnt += 1
         if commit:
             instance.save()
