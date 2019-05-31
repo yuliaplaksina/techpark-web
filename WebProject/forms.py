@@ -14,8 +14,6 @@ class RegisterForm(forms.ModelForm):
         user = super().save(commit=False)
         user.set_password(user.password)
 
-        print(user.password)
-
         if commit:
             with transaction.atomic():
                 user.save()
@@ -64,5 +62,6 @@ class AnswerForm(forms.ModelForm):
         instance.author = self.author
         instance.question = self.question
         instance.question.answer_cnt += 1
+        instance.question.save()
         if commit:
             instance.save()

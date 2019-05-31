@@ -3,3 +3,5 @@ Faker==1.0.2
 ipython==7.3
 flake8==3.7.7
 psycopg2==2.7.7
+django-bootstrap-pagination==1.7.0
+django-widget-tweaks==1.4.3

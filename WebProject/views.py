@@ -76,14 +76,17 @@ def profile(request):
 
 def question_page(request, qid):
     question = models.Question.objects.add_author().get(pk=qid)
+    if request.user.is_authenticated:
+        if request.POST:
+            form = AnswerForm(request.user, question, request.POST)
+            if form.is_valid():
+                form.save()
+        form = AnswerForm(request.user, question.id)
 
     answers = models.Answer.objects.add_fields().filter(question=question)
     answers = pagination(request, answers, 10)
-    if request.POST:
-        form = AnswerForm(request.user, question.id, request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = AnswerForm(request.user, question.id)
+
+    if request.user.is_anonymous:
+        return render(request, 'question.html', {'question': question, 'answers': answers})
 
     return render(request, 'question.html', {'question': question, 'answers': answers, 'form': form})

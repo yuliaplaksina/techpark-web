@@ -140,6 +140,11 @@ class Answer(models.Model):
     )
     objects = AnswerManager()
 
+    # def save(self, *args, **kwargs):
+    #     super(Answer, self).save(*args, **kwargs)
+    #     self.question.answer_cnt += 1
+    #     self.question.save()
+
     class Meta:
         verbose_name = "Ответ"
         verbose_name_plural = "Ответы"
