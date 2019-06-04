@@ -11,6 +11,9 @@ class QuestionManager(models.Manager):
     def best(self):
         return self.add_author().order_by('-rating')
 
+    def tag(self, tag):
+        return self.add_author().filter(tags=tag)
+
     def add_author(self):
         return self.annotate(
             author_name=F('author__user__username'),

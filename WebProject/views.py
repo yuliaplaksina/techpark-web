@@ -69,6 +69,16 @@ def best(request):
     return render(request, 'home.html', {'questions': questions, 'fil': 'best'})
 
 
+def tag(request, tag):
+
+    tag_name = models.Tag.objects.get(name=tag)
+
+    questions = models.Question.objects.tag(tag_name)
+    questions = pagination(request, questions, 20)
+
+    return render(request, 'home.html', {'questions': questions, 'fil': tag})
+
+
 def profile(request):
 
     return render(request, 'settings_profile.html')

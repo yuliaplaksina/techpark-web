@@ -4,12 +4,15 @@
 
 {% block body %}
     <div class="page-header">
-        {% if fil != "best" %}
+        {% if fil == "home" %}
             <h2 class="page-header">Новые вопросы</h2>
             <a href="{% url 'best' %}"><button type="button" class="btn btn-link">Популярные вопросы</button></a>
-        {% else %}
+        {% elif fil == "best" %}
             <h2 class="page-header">Популярные вопросы</h2>
             <a href="{% url 'main' %}"><button type="button" class="btn btn-link">Новые вопросы</button></a>
+        {% else %}
+            <h2 class="page-header">{{ fil }}</h2>
+            <a href="{% url 'main' %}"><button type="button" class="btn btn-link">Сбросить фильтр</button></a>
         {% endif %}
     </div>
 

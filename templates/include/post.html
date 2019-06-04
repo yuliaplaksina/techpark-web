@@ -1,6 +1,6 @@
 {% load static %}
 
- <a href="{% url 'question' qid=question.id %}" class="qst">
+ <div class="qst">
     <div class="card">
         <div class="card-body row">
             <div class="col-2">
@@ -11,15 +11,24 @@
             <div class="col-10">
                 <div class="">
                     <h5 class="card-title">{{ question.title }}</h5>
-                    <p>{{ question.data_added }}</p>
+                    <p class="text-muted font-italic">{{ question.data_added }}</p>
                     <p class="qst-text">{{ question.text }}</p>
+                    <div class="text-sm-right">
+                        <a href="{% url 'question' qid=question.id %}">Читать далее</a>
+                    </div>
                     {% if question.answer_cnt %}
-                        <p>{{ question.answer_cnt }} ответов</p>
+                        <span class="qst-text">{{ question.answer_cnt }} ответов</span>
                     {% else %}
-                        <p>Ответов пока нет</p>
+                        <span class="qst-text">Ответов пока нет</span>
                     {% endif %}
+                    <div class="text-muted font-italic d-inline-block ml-5">
+                        <span>Теги:</span>
+                        {% for tag in question.tags.all %}
+                            <a href="{% url 'tag' tag=tag.name %}">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</a>
+</div>
